@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'ProviderTalabat.dart';
 import 'resturantitem.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'orderedmenue.dart';
@@ -20,6 +22,8 @@ class _MenuState extends State<Menu> {
 
   @override
   Widget build(BuildContext context) {
+    var menitem = Provider.of<ProviderTalabat>(context);
+
     return  Scaffold(
       appBar: AppBar(title: Text('Menu'),),
       body:ListView.builder(
@@ -91,7 +95,7 @@ class _MenuState extends State<Menu> {
                                           maxRadius:18,
                                         ),
                                         onTap:() {
-
+                                         menitem.add(OrderedItem(name:'hjhj',rest_name:'hjhj',price:9));
 
                                         } ,
                                       ),

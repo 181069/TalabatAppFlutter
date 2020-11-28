@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:proj2fatisr/ProviderTalabat.dart';
+import 'package:provider/provider.dart';
 import 'ordereditems.dart';
 import 'menupage.dart';
 import 'menupage.dart';
@@ -8,29 +10,20 @@ import 'menupage.dart';
 import 'main.dart';
 import 'package:flutter/material.dart';
 class Ordereditem extends StatefulWidget {
-
- final List <OrderedItem> orders;
-  Ordereditem(this.orders);
-
   @override
-  _OrdereditemState createState() => _OrdereditemState(orders);
+  _OrdereditemState createState() => _OrdereditemState();
 }
-
 class _OrdereditemState extends State<Ordereditem> {
-  _OrdereditemState(this.orders);
-  List <OrderedItem> orders;
-
-   deleteitem (){}
-  @override
-
   @override
   Widget build(BuildContext context) {
+    var menitem = Provider.of<ProviderTalabat>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Ordered Menue"),
       ),
       body: ListView.builder(
-        itemCount: orders.length,
+        itemCount: menitem.ordereditem.length,
           itemBuilder: (context, index) {
             return Container(
               child: Column(
@@ -50,16 +43,16 @@ class _OrdereditemState extends State<Ordereditem> {
                           child: Column(
                             children: [
 
-                              Text("This is the order"),
+                              Text(menitem.ordereditem[index].rest_name),
                             ],
                           ),
                         ),
-                        title: Text("${orders[index].name}"),
-                        subtitle: Text("This is for the price"),
+                        title: Text(menitem.ordereditem[index].name),
+                        subtitle: Text('This is for the price ${menitem.ordereditem[index].price}'),
                         trailing: IconButton(
 
                           icon: Icon(Icons.delete),
-                          onPressed: deleteitem()   ,
+                          onPressed:(){}  ,
 
                         ),
 

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:proj2fatisr/ProviderTalabat.dart';
 import 'package:proj2fatisr/loading.dart';
 import 'package:proj2fatisr/resturanpage.dart';
-
+import 'package:provider/provider.dart';
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider<ProviderTalabat>(
+      create:(_) =>ProviderTalabat() ,
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-
       home:Loading(),
     );
   }
