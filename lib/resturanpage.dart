@@ -6,21 +6,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-/* 1.	Name
-class MainPage extends StatefulWidget {
-
-  final List<Todo> todo;
-  MainPage(this.todo);
-
-  @override
-  _MainPageState createState() => _MainPageState(todo);
-}
-
-class _MainPageState extends State<MainPage> {
-  List<Todo> todo;
-
-  _MainPageState(this.todo);
-*/
 
 class ResturantPage extends StatefulWidget {
   final List<Res> resturants;
@@ -113,7 +98,7 @@ class _ResturantPageState extends State<ResturantPage> {
                                       onTap:() {
                                         print(resturants);
 
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => Loading2(index+1),));
+                                        Navigator.push(context, MaterialPageRoute(builder:(context) => Loading2(index+1),));
                                       } ,
                                     ),
                                     RatingBar.builder(

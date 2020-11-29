@@ -19,10 +19,10 @@ class _MenuState extends State<Menu> {
   List<RestuItem> menues;
   _MenuState(this.menues);
 
-
   @override
   Widget build(BuildContext context) {
     var menitem = Provider.of<ProviderTalabat>(context);
+   List<OrderedItem> ordereditem=[];
 
     return  Scaffold(
       appBar: AppBar(title: Text('Menu'),),
@@ -32,131 +32,138 @@ class _MenuState extends State<Menu> {
           return  Container(
             child: Column(
 
-              children: [
+                  children: [
 
-                Container(
-                  height:200,
-                  margin: const EdgeInsets.all(2),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0)),
-                    shadowColor: Colors.black,
-                    elevation: 50,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        //this one
-                        Container(
-                          // width: MediaQuery.of(context).size.width,
-                          height: 100,
+                    Container(
+                      margin: const EdgeInsets.all(2),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0)),
+                        shadowColor: Colors.black,
+                        elevation: 50,
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            //this one
+                            Container(
+                              // width: MediaQuery.of(context).size.width,
+                              height: 100,
 
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage("http://appback.ppu.edu/static/${menues[index].image}"),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage("http://appback.ppu.edu/static/${menues[index].image}"),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment:CrossAxisAlignment.start ,
-                            children: [
-                              Row(
-                                mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment:CrossAxisAlignment.start ,
                                 children: [
-
-                                  Column(
-                                    crossAxisAlignment:CrossAxisAlignment.start ,
-                                    children: [
-                                      Text(
-                                        menues[index].name,
-                                        style: TextStyle(color: Colors.indigo, fontSize:15),
-                                      ),
-                                      Text('price: ${menues[index].price} shekel',
-                                        style: TextStyle(color: Colors.black, fontSize: 10),
-                                      ),
-                                    ],
-                                  ),
-
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                     children: [
 
-                                      GestureDetector(
-                                        child:CircleAvatar(
-                                          backgroundColor: Colors.black12,
-                                          child: Icon(
-                                            Icons.add,
-                                            size:20,
-                                            color: Colors.black,
+                                      Column(
+                                        crossAxisAlignment:CrossAxisAlignment.start ,
+                                        children: [
+                                          Text(
+                                            menues[index].name,
+                                            style: TextStyle(color: Colors.indigo, fontSize:15),
                                           ),
-                                          minRadius: 18,
-                                          maxRadius:18,
-                                        ),
-                                        onTap:() {
-                                         menitem.add(OrderedItem(name:'hjhj',rest_name:'hjhj',price:9));
-
-                                        } ,
-                                      ),
-                                      RatingBar.builder(
-                                        initialRating: 0,
-                                        itemCount: 5,
-                                        itemSize:20 ,
-                                        itemBuilder: (context, index) {
-                                          switch (index) {
-                                            case 0:
-                                              return Icon(
-                                                Icons.sentiment_very_dissatisfied,
-                                                color: Colors.red,
-                                              );
-                                            case 1:
-                                              return Icon(
-                                                Icons.sentiment_dissatisfied,
-                                                color: Colors.redAccent,
-                                              );
-                                            case 2:
-                                              return Icon(
-                                                Icons.sentiment_neutral,
-                                                color: Colors.amber,
-                                              );
-                                            case 3:
-                                              return Icon(
-                                                Icons.sentiment_satisfied,
-                                                color: Colors.lightGreen,
-                                              );
-                                            case 4:
-                                              return Icon(
-                                                Icons.sentiment_very_satisfied,
-                                                color: Colors.green,
-                                              );
-                                          }
-                                        },
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
+                                          Text('price: ${menues[index].price} shekel',
+                                            style: TextStyle(color: Colors.black, fontSize: 10),
+                                          ),
+                                        ],
                                       ),
 
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
 
+                                          GestureDetector(
+                                            child:CircleAvatar(
+                                              backgroundColor: Colors.black12,
+                                              child: Icon(
+                                                Icons.add,
+                                                size:20,
+                                                color: Colors.black,
+                                              ),
+                                              minRadius: 18,
+                                              maxRadius:18,
+                                            ),
+                                            onTap:() {
+                                              print(menues[index].name);
+                                              print(menues[index].price);
+                                              print(menues[index].id);
+                                              menitem.ordereditem.add(OrderedItem(name:menues[index].name ,price:menues[index].price ,rest_name:'${menues[index].rest_id} '));
+                                              Navigator.push(context, MaterialPageRoute(builder:(context) => Ordereditem(),));
+
+                                            }
+
+                                          ),
+                                          RatingBar.builder(
+                                            initialRating: 0,
+                                            itemCount: 5,
+                                            itemSize:20 ,
+                                            itemBuilder: (context, index) {
+                                              switch (index) {
+                                                case 0:
+                                                  return Icon(
+                                                    Icons.sentiment_very_dissatisfied,
+                                                    color: Colors.red,
+                                                  );
+                                                case 1:
+                                                  return Icon(
+                                                    Icons.sentiment_dissatisfied,
+                                                    color: Colors.redAccent,
+                                                  );
+                                                case 2:
+                                                  return Icon(
+                                                    Icons.sentiment_neutral,
+                                                    color: Colors.amber,
+                                                  );
+                                                case 3:
+                                                  return Icon(
+                                                    Icons.sentiment_satisfied,
+                                                    color: Colors.lightGreen,
+                                                  );
+                                                case 4:
+                                                  return Icon(
+                                                    Icons.sentiment_very_satisfied,
+                                                    color: Colors.green,
+                                                  );
+                                              }
+                                            },
+                                            onRatingUpdate: (rating) {
+                                              print(rating);
+                                            },
+                                          ),
+
+
+                                        ],
+                                      ),
                                     ],
                                   ),
+                                  Text(menues[index].descr,style: TextStyle(fontSize:12,color:Colors.indigo  )),
                                 ],
                               ),
-                              Text(menues[index].descr,style: TextStyle(fontSize:12,color:Colors.indigo  )),
-                            ],
-                          ),
-                        ),
+                            ),
 
-                        //LIST CONTAINERS
-                      ],
+                            //LIST CONTAINERS
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    //icon containers
+                  ],
                 ),
-                //icon containers
-              ],
-            ),
-          );
-        },) ,
+              );
+            },),
+
+
     );
+
   }
 }

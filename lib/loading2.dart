@@ -6,7 +6,7 @@ import 'package:toast/toast.dart';
 import 'resturantitem.dart';
 import 'menupage.dart';
 class Loading2 extends StatefulWidget {
-  int id;
+ final int id;
 
   Loading2(this.id);
 
@@ -20,7 +20,7 @@ class _Loading2State extends State<Loading2> {
   _Loading2State(this.id);
 
   List<RestuItem> resturantItem = [];
-  void fetchRest() async {
+  void fetchMenu() async {
     http.Response response = await http.get('http://appback.ppu.edu/menus/${id}');
     if(response.statusCode == 200) {
       var jsonArray = jsonDecode(response.body) as List;
@@ -34,7 +34,7 @@ class _Loading2State extends State<Loading2> {
   @override
   void initState() {
     super.initState();
-    fetchRest();
+    fetchMenu();
   }
   @override
   Widget build(BuildContext context) {

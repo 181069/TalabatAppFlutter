@@ -7,26 +7,13 @@ import 'package:flutter/widgets.dart';
 
 
 class OrderModel extends ChangeNotifier{
-  List<OrderedItem> _orders = [];
-  int _selectedIndex = 0;
-  void setSelectedIndex(int value) {
-    _selectedIndex = value;
-  }
-  void setOrders(List<OrderedItem> newOrders) {
-    _orders = newOrders;
-    notifyListeners();
-  }
-
-  List<OrderedItem> get orders => _orders;
-  OrderedItem get selectedOrders => _orders[_selectedIndex];
-  int get length => _orders.length;
-
+  List<OrderedItem> orders = [];
   void add(OrderedItem order) {
-    _orders.add(order);
+   orders.add(order);
     notifyListeners();
   }
   void remove(OrderedItem value) {
-    _orders.remove(value);
+    orders.remove(value);
     notifyListeners();
   }
 
