@@ -7,17 +7,19 @@ import 'resturantitem.dart';
 import 'menupage.dart';
 class Loading2 extends StatefulWidget {
  final int id;
+ final String resName;
 
-  Loading2(this.id);
+
+ Loading2(this.id, this.resName);
 
   @override
-  _Loading2State createState() => _Loading2State(id);
+  _Loading2State createState() => _Loading2State(id,resName);
 }
 
 class _Loading2State extends State<Loading2> {
   int id;
-
-  _Loading2State(this.id);
+  String resName;
+  _Loading2State(this.id, this.resName);
 
   List<RestuItem> resturantItem = [];
   void fetchMenu() async {
@@ -29,7 +31,7 @@ class _Loading2State extends State<Loading2> {
       print(' id is $id');
       resturantItem = jsonArray.map((e) => RestuItem.fromJson(e)).toList();
     }
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Menu(resturantItem),));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Menu(resturantItem,resName),));
   }
   @override
   void initState() {
