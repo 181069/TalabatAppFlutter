@@ -1,6 +1,10 @@
+import 'dart:ui';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:proj2fatisr/googlemap.dart';
@@ -25,7 +29,9 @@ class ResturantPage extends StatefulWidget {
 class _ResturantPageState extends State<ResturantPage> {
   List<Res> resturants;
 
+
   _ResturantPageState(this.resturants);
+
 
   @override
   void initState() {
@@ -73,7 +79,11 @@ class _ResturantPageState extends State<ResturantPage> {
             IconButton(
               tooltip:'faviorate' ,
               onPressed: () {
-                print('done');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FavPage(),
+                    ));
               },
               icon: Icon(
                 Icons.star,
@@ -89,7 +99,11 @@ class _ResturantPageState extends State<ResturantPage> {
             children: [
               IconButton(
                 onPressed: () {
-                  print('done');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MapPage(resturants),
+                      ));
                 },
                 icon: Icon(
                   Icons.map,
@@ -119,21 +133,24 @@ class _ResturantPageState extends State<ResturantPage> {
           ),
         ],
       ),
-      body: Column(
+      body: ListView(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
+            padding:EdgeInsets.fromLTRB(70, 0, 70, 0) ,
             margin:EdgeInsets.fromLTRB(0, 10, 0, 7) ,
-            child: DottedBorder(
-              color: Colors.red[700],
-              dashPattern: [12,12, 12, 12],
-
-              strokeWidth:3,
-              child: Text(' Resturants List ',style:TextStyle(fontSize:30,color: Colors.red[700],fontFamily:'ArchitectsDaughter Regular') ,),
+            child: Container(
+              padding:EdgeInsets.fromLTRB(15, 0, 15, 0) ,
+              child: DottedBorder(
+                color: Colors.red[700],
+                dashPattern: [12,12, 12, 12],
+                strokeWidth:3,
+                child: Text('Resturants List ',style:TextStyle(fontSize:30,color: Colors.red[700],fontFamily:'ArchitectsDaughter Regular') ,textAlign:TextAlign.center ,),
+              ),
             ),
           ),
           Container(
-            height: 400,
+            height: 265,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: resturants.length,
@@ -269,27 +286,44 @@ class _ResturantPageState extends State<ResturantPage> {
               },
             ),
           ),
-          FlatButton(
-            color: Colors.red,
-            child: Text('go to fav'),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FavPage(),
-                  ));
-            },
+          Container(
+            padding:EdgeInsets.fromLTRB(70, 0, 70, 0) ,
+            margin:EdgeInsets.fromLTRB(0, 10, 0, 7) ,
+            child: Container(
+              padding:EdgeInsets.fromLTRB(15, 0, 15, 0) ,
+              child: DottedBorder(
+                color: Colors.red[700],
+                dashPattern: [12,12, 12, 12],
+                strokeWidth:3,
+                child: Text('NEWLY ADDED  ',style:TextStyle(fontSize:30,color: Colors.red[700],fontFamily:'ArchitectsDaughter Regular') ,textAlign:TextAlign.center ,),
+              ),
+            ),
           ),
-          FlatButton(
-            color: Colors.red,
-            child: Text('go to Map'),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MapPage(resturants),
-                  ));
-            },
+
+
+          Container(
+            height: 210,
+            child:CarouselSlider(
+              options: CarouselOptions(height: 200.0,autoPlay: true,),
+              items: [
+                'https://mafahem.com/uploads/articles/md/2019/12/tryk-aaml-hlo-alknaf-alnablsy-alnaaam.jpg',
+                'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20191001-turkey-cupcakes-ehg-1918-1572299112.jpg',
+                'https://assets.epicurious.com/photos/5919eb1af95827731c3992e9/master/pass/Herby-Chicken-Kofta-Meatballs-recipe-050217.jpg',
+                'https://sahhawhana.com/mwfiles/thumbs/fit630x300/22644/1589935314/%D8%B7%D8%B1%D9%8A%D9%82%D8%A9_%D8%B9%D9%85%D9%84_%D9%88%D8%B1%D9%82_%D8%B9%D9%86%D8%A8_%D8%A8%D8%A7%D9%84%D8%B9%D8%AF%D8%B3.jpg'].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                            color: Colors.amber
+                        ),
+                        child: Image.network(i,fit:BoxFit.fill ,)
+                    );
+                  },
+                );
+              }).toList(),
+            ),
           ),
         ],
       ),
