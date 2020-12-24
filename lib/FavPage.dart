@@ -18,7 +18,8 @@ class _FavPageState extends State<FavPage> {
 
     return Scaffold(
       appBar:AppBar(
-        title:Text('Faviorate Items Page') ,
+        backgroundColor:Colors.red[700] ,
+        title:Text('Faviorate Items Page',style:TextStyle(fontFamily:'ArchitectsDaughter Regular' ,fontSize:25 )) ,
 
       ) ,
       body:Column(

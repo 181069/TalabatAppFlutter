@@ -22,7 +22,8 @@ class _OrdereditemState extends State<Ordereditem> {
      List<OrderedItem> fat=menitem.ordereditem;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ordered Menue"),
+        backgroundColor:Colors.red[700] ,
+        title: Text("Ordered Menue",style:TextStyle(fontFamily:'ArchitectsDaughter Regular' ,fontSize:25 ) ),
       ),
       body: Column(
         children: [
@@ -36,7 +37,7 @@ class _OrdereditemState extends State<Ordereditem> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        height: 150.0,
+
                         margin:EdgeInsets.all(10.0),
                         child: Column(
 
@@ -90,11 +91,11 @@ class _OrdereditemState extends State<Ordereditem> {
             children: [
               Text('Total price ${_totalprice(menitem.ordereditem) } '
                   'shekel',style: TextStyle(fontSize:20,  ),),
-              FlatButton( color:Colors.greenAccent ,
+              FlatButton( color:Colors.red[700] ,
                   onPressed: () {
                  menitem.removeAllOrdered();
                 },
-                  child: Text('confirmand send'))
+                  child: Text('confirmand and send'))
             ],
           ),
         ],

@@ -56,7 +56,7 @@ class _MenuState extends State<Menu> {
             child:CarouselSlider(
               options: CarouselOptions(height: 160.0,autoPlay: true,),
               items: [
-                'http://appback.ppu.edu/static/${menues[0].image}',
+                'https://cdn4.vectorstock.com/i/1000x1000/93/78/welcome-to-our-restaurant-chalkboard-printable-vector-6719378.jpg',
                 'https://png.pngtree.com/png-clipart/20190705/original/pngtree-classic-big-sale-discount-label-with-stroke-illustration-png-image_4346265.jpg',
                 'https://png.pngtree.com/png-clipart/20190515/original/pngtree-black-friday-sale-banner-abstract-background-png-image_3700367.jpg',
                 'https://sahhawhana.com/mwfiles/thumbs/fit630x300/22644/1589935314/%D8%B7%D8%B1%D9%8A%D9%82%D8%A9_%D8%B9%D9%85%D9%84_%D9%88%D8%B1%D9%82_%D8%B9%D9%86%D8%A8_%D8%A8%D8%A7%D9%84%D8%B9%D8%AF%D8%B3.jpg'].map((i) {
