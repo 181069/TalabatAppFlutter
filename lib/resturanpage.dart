@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:proj2fatisr/googlemap.dart';
 import 'package:proj2fatisr/loading2.dart';
+import 'package:proj2fatisr/orderedmenue.dart';
 import 'package:proj2fatisr/resturantitem.dart';
 import 'package:proj2fatisr/resturants.dart';
 import 'dart:convert';
@@ -119,7 +120,11 @@ class _ResturantPageState extends State<ResturantPage> {
             children: [
               IconButton(
                 onPressed: () {
-                  print('done');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Ordereditem(),
+                      ));
                 },
                 icon: Icon(
                   Icons.local_grocery_store,

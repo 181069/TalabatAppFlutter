@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:proj2fatisr/FavPage.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 import 'ProviderTalabat.dart';
 import 'resturantitem.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -45,15 +46,15 @@ class _MenuState extends State<Menu> {
                 color: Colors.red[700],
                 dashPattern: [12,12, 12, 12],
                 strokeWidth:3,
-                child: Text('$resName board  ',style:TextStyle(fontSize:30,color: Colors.red[700],fontFamily:'ArchitectsDaughter Regular') ,textAlign:TextAlign.center ,),
+                child: Text('$resName board  ',style:TextStyle(fontSize:20,color: Colors.red[700],fontFamily:'ArchitectsDaughter Regular') ,textAlign:TextAlign.center ,),
               ),
             ),
           ),
 
           Container(
-            height: 210,
+            height:170,
             child:CarouselSlider(
-              options: CarouselOptions(height: 200.0,autoPlay: true,),
+              options: CarouselOptions(height: 160.0,autoPlay: true,),
               items: [
                 'http://appback.ppu.edu/static/${menues[0].image}',
                 'https://png.pngtree.com/png-clipart/20190705/original/pngtree-classic-big-sale-discount-label-with-stroke-illustration-png-image_4346265.jpg',
@@ -86,7 +87,7 @@ class _MenuState extends State<Menu> {
                 color: Colors.red[700],
                 dashPattern: [12,12, 12, 12],
                 strokeWidth:3,
-                child: Text('our menue ',style:TextStyle(fontSize:30,color: Colors.red[700],fontFamily:'ArchitectsDaughter Regular') ,textAlign:TextAlign.center ,),
+                child: Text('our menue ',style:TextStyle(fontSize:20,color: Colors.red[700],fontFamily:'ArchitectsDaughter Regular') ,textAlign:TextAlign.center ,),
               ),
             ),
           ),
@@ -126,9 +127,12 @@ class _MenuState extends State<Menu> {
                                 children: [
                                   IconButton(icon:Icon(Icons.add) , onPressed: (){
                                     menitem.add(OrderedItem(name:menues[index].name ,price:menues[index].price ,rest_name:resName));
+                                    Toast.show('item added to basket succefully', context);
                                   }),
                                   IconButton(icon: Icon(Icons.star), onPressed: (){
                                     menitem.addfav(OrderedItem(name:menues[index].name ,price:menues[index].price ,rest_name:resName));
+                                    Toast.show('item added to faviorate list succefully', context);
+
                                   }),
                                 ],
                               ),
