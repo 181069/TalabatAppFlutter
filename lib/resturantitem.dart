@@ -1,5 +1,4 @@
 class RestuItem{
-
  int id;
   int rest_id;
  String name;
@@ -10,7 +9,6 @@ class RestuItem{
 
  RestuItem({this.id, this.rest_id, this.name, this.descr, this.price,
       this.image, this.rating});
-
 
  factory RestuItem.fromJson(dynamic jsonObject) {
     return RestuItem(
@@ -24,5 +22,27 @@ class RestuItem{
       //jsonObject[''] as,
     );
   }
+ factory RestuItem.fromMap(Map<String, dynamic> data) {
+   return RestuItem(
+     rest_id: data['rest_id'],
+     id: data['id'],
+     name: data['name'],
+     image: data['image'],
+     price: data['price'],
+   );
+ }
+
+ Map<String, dynamic> toMap() {
+   return {
+     'rest_id': this.rest_id,
+     'id': this.id,
+     'name': this.name,
+     'image': this.image,
+     'price': this.price
+   };
+ }
+
+
+
 
 }

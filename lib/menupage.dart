@@ -11,6 +11,7 @@ import 'resturantitem.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'orderedmenue.dart';
 import 'ordereditems.dart';
+import 'database_provider.dart';
 class Menu extends StatefulWidget {
   final List<RestuItem> menues;
   final String resName;
@@ -132,6 +133,13 @@ class _MenuState extends State<Menu> {
                                   IconButton(icon: Icon(Icons.star), onPressed: (){
                                     menitem.addfav(OrderedItem(name:menues[index].name ,price:menues[index].price ,rest_name:resName));
                                     Toast.show('item added to faviorate list succefully', context);
+                                     DatabaseProvider.db.insert(RestuItem(
+                                         name:menues[index].name ,
+                                        price:menues[index].price ,
+                                         image:menues[index].image ,
+
+
+                                     ));
 
                                   }),
                                 ],

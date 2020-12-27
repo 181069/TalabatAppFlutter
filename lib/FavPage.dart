@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 import 'ProviderTalabat.dart';
 import 'ordereditems.dart';
 import 'orderedmenue.dart';
-
+import 'database_provider.dart';
 class FavPage extends StatefulWidget {
   @override
   _FavPageState createState() => _FavPageState();
 }
 
 class _FavPageState extends State<FavPage> {
-
+ int id;
   @override
   Widget build(BuildContext context) {
     var menitem = Provider.of<ProviderTalabat>(context);
@@ -44,8 +44,11 @@ class _FavPageState extends State<FavPage> {
                     trailing:IconButton(
                       icon:Icon(Icons.clear) ,
                     onPressed: () {
+
+
                       menitem.removefav(index);
                     },
+
                     ) ,
                   );
                 },) ,

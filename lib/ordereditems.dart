@@ -2,6 +2,8 @@ class OrderedItem{
   String name;
   String rest_name;
   int price ;
-  OrderedItem({this.name, this.rest_name,this.price});
+  int id;
+
+  OrderedItem({this.name, this.rest_name,this.price,this.id});
 }
 
