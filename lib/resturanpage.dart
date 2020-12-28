@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:proj2fatisr/ProviderTalabat.dart';
+import 'package:proj2fatisr/database_provider.dart';
 import 'package:proj2fatisr/googlemap.dart';
 import 'package:proj2fatisr/loading2.dart';
 import 'package:proj2fatisr/orderedmenue.dart';
@@ -15,8 +17,11 @@ import 'package:proj2fatisr/resturants.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 
 import 'FavPage.dart';
+import 'ordereditems.dart';
 
 class ResturantPage extends StatefulWidget {
   final List<Res> resturants;
@@ -40,6 +45,8 @@ class _ResturantPageState extends State<ResturantPage> {
   }
 
   Widget build(BuildContext context) {
+    var menitem = Provider.of<ProviderTalabat>(context);
+
     return Scaffold(
       backgroundColor: Colors.grey[100],
 
@@ -141,6 +148,7 @@ class _ResturantPageState extends State<ResturantPage> {
       body: ListView(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+
           Container(
             padding:EdgeInsets.fromLTRB(70, 0, 70, 0) ,
             margin:EdgeInsets.fromLTRB(0, 10, 0, 7) ,
@@ -329,6 +337,19 @@ class _ResturantPageState extends State<ResturantPage> {
                 );
               }).toList(),
             ),
+          ),
+          FutureBuilder(
+            future: DatabaseProvider.db.favorit4,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                menitem.fav = snapshot.data;
+                if (menitem.fav.isNotEmpty) {
+
+                } else
+                  {}
+              } else if (snapshot.hasError) return Text('${snapshot.error}');
+              return CircularProgressIndicator();
+            },
           ),
         ],
       ),

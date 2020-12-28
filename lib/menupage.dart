@@ -3,6 +3,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:proj2fatisr/FavItem.dart';
 import 'package:proj2fatisr/FavPage.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
@@ -131,15 +132,9 @@ class _MenuState extends State<Menu> {
                                     Toast.show('item added to basket succefully', context);
                                   }),
                                   IconButton(icon: Icon(Icons.star), onPressed: (){
-                                    menitem.addfav(OrderedItem(name:menues[index].name ,price:menues[index].price ,rest_name:resName));
+                                    menitem.addfav(FavItem(rest_Name:resName,name:menues[index].name,descr:menues[index].descr,image:menues[index].image,price:menues[index].price ,));
                                     Toast.show('item added to faviorate list succefully', context);
-                                     DatabaseProvider.db.insert(RestuItem(
-                                         name:menues[index].name ,
-                                        price:menues[index].price ,
-                                         image:menues[index].image ,
 
-
-                                     ));
 
                                   }),
                                 ],

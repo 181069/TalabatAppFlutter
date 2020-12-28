@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import 'package:proj2fatisr/FavItem.dart';
+import 'package:proj2fatisr/ProviderTalabat.dart';
+import 'package:proj2fatisr/database_provider.dart';
 import 'package:proj2fatisr/errorPage.dart';
+import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'resturants.dart';
 import 'resturanpage.dart';
@@ -13,6 +17,8 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+
+
   List<Res> resturants = [];
   void fetchRest() async {
     http.Response response = await http.get('http://appback.ppu.edu/restaurants');
@@ -31,8 +37,11 @@ class _LoadingState extends State<Loading> {
   }
   @override
   void initState() {
+
     super.initState();
     fetchRest();
+
+
   }
   @override
   Widget build(BuildContext context) {
